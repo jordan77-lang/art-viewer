@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parthenon Cavalcade Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>Parthenon Cavalcade Viewer</h1>
+                <p class="subtitle">North Frieze Blocks XXXVI-XXXVIII, 438–432 BCE</p>
+            </div>
+        </header>
+
+        <!-- Main 3D Viewer -->
+        <main class="viewer-container">
+            <div id="canvas-container">
+                <canvas id="viewer-canvas"></canvas>
+                
+                <!-- Loading Screen -->
+                <div id="loading-screen">
+                    <div class="loader">
+                        <div class="spinner"></div>
+                        <p>Loading 3D Model...</p>
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <p id="progress-text">0%</p>
+                    </div>
+                </div>
+
+                <!-- Annotation Labels (rendered in 3D space) -->
+                <div id="annotation-labels"></div>
+            </div>
+
+            <!-- Control Panel -->
+            <aside class="control-panel">
+                <div class="panel-section">
+                    <h3>View Controls</h3>
+                    <div class="control-group">
+                        <button id="btn-auto-rotate" class="control-btn" title="Toggle Auto Rotation">
+                            <span class="icon">↻</span>
+                            <span>Auto Rotate</span>
+                        </button>
+                        <button id="btn-reset-view" class="control-btn" title="Reset Camera">
+                            <span class="icon">⟲</span>
+                            <span>Reset View</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>Tools</h3>
+                    <div class="control-group">
+                        <button id="btn-add-annotation" class="control-btn" title="Add Annotation">
+                            <span class="icon">📌</span>
+                            <span>Annotate</span>
+                        </button>
+                        <button id="btn-screenshot" class="control-btn" title="Take Screenshot">
+                            <span class="icon">📷</span>
+                            <span>Screenshot</span>
+                        </button>
+                    </div>
+                    <div class="control-group">
+                        <button id="btn-fullscreen" class="control-btn" title="Fullscreen">
+                            <span class="icon">⛶</span>
+                            <span>Fullscreen</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>Guided Tour</h3>
+                    <div class="tour-controls">
+                        <button id="btn-tour-prev" class="tour-btn" disabled>◀ Previous</button>
+                        <span id="tour-progress">0 / 0</span>
+                        <button id="btn-tour-next" class="tour-btn">Next ▶</button>
+                    </div>
+                    <button id="btn-tour-start" class="control-btn tour-start">
+                        <span class="icon">🎓</span>
+                        <span>Start Tour</span>
+                    </button>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Info Panel (shows when annotation is selected) -->
+        <div id="info-panel" class="info-panel hidden">
+            <button id="info-close" class="info-close">×</button>
+            <h3 id="info-title">Annotation Title</h3>
+            <p id="info-description">Description text here...</p>
+        </div>
+
+        <!-- Add Annotation Modal -->
+        <div id="annotation-modal" class="modal hidden">
+            <div class="modal-content">
+                <h3>📌 Add Annotation</h3>
+                <p id="annotation-instruction">Click on the model to place your marker</p>
+                <div class="form-group">
+                    <label for="annotation-title">Title</label>
+                    <input type="text" id="annotation-title" placeholder="e.g., Rider's Drapery">
+                </div>
+                <div class="form-group">
+                    <label for="annotation-description">Description</label>
+                    <textarea id="annotation-description" rows="3" placeholder="Describe what students should observe..."></textarea>
+                </div>
+                <div class="modal-buttons">
+                    <button id="btn-cancel-annotation" class="btn-secondary">Cancel</button>
+                    <button id="btn-save-annotation" class="btn-primary" disabled>Save Annotation</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Educational Info Footer -->
+        <footer class="footer">
+            <div class="artifact-info">
+                <h4>About This Artifact</h4>
+                <p><strong>Title:</strong> Cavalcade of Horse Riders from the North Frieze of the Parthenon</p>
+                <p><strong>Blocks:</strong> XXXVI-XXXVIII | <strong>Date:</strong> 438–432 BCE</p>
+                <p><strong>Material:</strong> Pentelic Marble | <strong>Location:</strong> British Museum, London</p>
+            </div>
+            <div class="annotations-footer">
+                <h4>Annotations <span id="annotation-count">(0)</span></h4>
+                <div id="annotation-list" class="annotation-list-footer">
+                    <p class="no-annotations">Click "Annotate" then click on the model to add annotations.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- html2canvas for full-page screenshots -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Import Maps for ES Modules -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="viewer.js"></script>
+</body>
+</html>
