@@ -1,4 +1,5 @@
 // Parthenon Cavalcade Viewer - Three.js Implementation
+// Version 1.1 - Updated zoom controls
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
