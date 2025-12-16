@@ -193,8 +193,8 @@ function onModelLoaded(gltf) {
     state.controls.target.set(0, size.y * 0.3, 0);
     state.controls.update();
     
-    // Update controls limits based on model size
-    state.controls.minDistance = maxDim * 0.5;
+    // Update controls limits based on model size - allow very close zoom
+    state.controls.minDistance = maxDim * 0.1;
     state.controls.maxDistance = maxDim * 5;
     
     // Hide loading screen

@@ -634,6 +634,22 @@ input[type="range"]::-webkit-slider-thumb {
     color: var(--text-primary);
 }
 
+.artifact-info .model-credit {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--background-light);
+    font-size: 0.75rem;
+}
+
+.artifact-info a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.artifact-info a:hover {
+    text-decoration: underline;
+}
+
 /* Annotations in Footer */
 .annotations-footer {
     flex: 1;
