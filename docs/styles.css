@@ -303,6 +303,29 @@ input[type="range"]::-webkit-slider-thumb {
     width: 100%;
 }
 
+/* Mouse Controls List */
+.controls-list {
+    list-style: none;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.controls-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.control-key {
+    background: var(--background-light);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
 /* Annotation List */
 .annotation-list {
     max-height: 200px;
